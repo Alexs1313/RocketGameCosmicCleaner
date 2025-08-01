@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import { useCallback, useState } from 'react';
@@ -13,7 +14,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { BlurView } from '@react-native-community/blur';
 
 import AppBackground from '../components/AppBackground';
-import { useStore } from '../store.js/context';
+import { useStore } from '../store/context';
 import LargeButton from '../components/LargeButton';
 
 const { height } = Dimensions.get('window');
@@ -33,7 +34,7 @@ const Upgrades = () => {
   const [selectedRocket, setSelectedRocket] = useState(0);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isFail, setIsFail] = useState(false);
-
+  const { height } = useWindowDimensions();
   const total = savedBalance.reduce((acc, score) => acc + score, 0);
 
   useFocusEffect(
@@ -98,7 +99,7 @@ const Upgrades = () => {
               <View style={styles.rocketContainer} key={idx}>
                 <Image source={rocket.image} />
                 <View style={{ marginTop: 5 }}>
-                  <Text style={styles.rocketName}>{rocket.name}</Text>
+                  <Text style={styles.rocketName}>{rocket.defaultName}</Text>
                   <Text style={styles.rocketCost}>{rocket.cost} Xp</Text>
                   <TouchableOpacity
                     disabled={rocket.unlocked}
@@ -118,41 +119,41 @@ const Upgrades = () => {
             ))}
           </View>
         </View>
-      </ScrollView>
-      <Modal
-        visible={isVisibleModal}
-        transparent
-        animationType="fade"
-        style={{}}
-      >
-        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-          <View style={styles.modalView}>
-            <Image
-              source={rockets[selectedRocket].image}
-              style={styles.modalImg}
-            />
-            <Text style={styles.modalTitle}>
-              Are you sure want to unlock this upgrade?
-            </Text>
-
-            <View style={styles.resContainer}>
-              <Text style={styles.statText}>Unlock cost: </Text>
-              <Text style={styles.quantityText}>
-                {rockets[selectedRocket].cost} Xp
+        <Modal visible={isVisibleModal} transparent style={{}}>
+          <View
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <View style={styles.modalView}>
+              <Image
+                source={rockets[selectedRocket].image}
+                style={styles.modalImg}
+              />
+              <Text style={styles.modalTitle}>
+                Are you sure want to unlock this upgrade?
               </Text>
+
+              <View style={styles.resContainer}>
+                <Text style={styles.statText}>Unlock cost: </Text>
+                <Text style={styles.quantityText}>
+                  {rockets[selectedRocket].cost} Xp
+                </Text>
+              </View>
+
+              <LargeButton title={'Unlock'} onPress={handleUnlockRocket} />
+
+              <LargeButton
+                title={'Cancel'}
+                style={styles.button}
+                textStyle={{ color: '#fff' }}
+                onPress={() => setIsVisibleModal(false)}
+              />
             </View>
-
-            <LargeButton title={'Unlock'} onPress={handleUnlockRocket} />
-
-            <LargeButton
-              title={'Cancel'}
-              style={styles.button}
-              textStyle={{ color: '#fff' }}
-              onPress={() => setIsVisibleModal(false)}
-            />
           </View>
-        </View>
-      </Modal>
+        </Modal>
+      </ScrollView>
 
       {isSuccess && (
         <Modal visible={isSuccess} transparent animationType="fade" style={{}}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -10,13 +10,14 @@ import {
   Share,
 } from 'react-native';
 import { BlurView } from '@react-native-community/blur';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import Card from '../components/Card';
 import { tips } from '../data/tips';
-import { useStore } from '../store.js/context';
+import { useStore } from '../store/context';
 import AppBackground from '../components/AppBackground';
 import LargeButton from '../components/LargeButton';
+import Orientation from 'react-native-orientation-locker';
 
 const { width, height } = Dimensions.get('window');
 const ROCKET_WIDTH = 70;
@@ -77,6 +78,12 @@ export default function Game() {
   const lastFuelDropRef = useRef(Date.now());
   const navigation = useNavigation();
   const { saveScore, saveBalance, rockets } = useStore();
+
+  useFocusEffect(
+    useCallback(() => {
+      Orientation.lockToPortrait();
+    }),
+  );
 
   useEffect(() => {
     if (gameOver) return;

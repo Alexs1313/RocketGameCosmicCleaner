@@ -2,7 +2,7 @@ import { Share, StyleSheet, Text, View } from 'react-native';
 import MediumButton from './MediumButton';
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useState } from 'react';
-import { useStore } from '../store.js/context';
+import { useStore } from '../store/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Card = ({ item, screen }) => {

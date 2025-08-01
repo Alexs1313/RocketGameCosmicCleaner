@@ -14,7 +14,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import AppBackground from '../components/AppBackground';
 import { tips } from '../data/tips';
 import Card from '../components/Card';
-import { useStore } from '../store.js/context';
+import { useStore } from '../store/context';
 
 const { height } = Dimensions.get('window');
 

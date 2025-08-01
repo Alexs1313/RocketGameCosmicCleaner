@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import AppBackground from '../components/AppBackground';
 
-import { useNavigation } from '@react-navigation/native';
-import { useStore } from '../store.js/context';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useStore } from '../store/context';
+import Orientation from 'react-native-orientation-locker';
 
 const { width, height } = Dimensions.get('window');
 const ROCKET_WIDTH = 70;
@@ -15,6 +16,12 @@ export default function Countdown({ setIsVisibleCountdown }) {
   const [count, setCount] = useState(3);
   const [showGo, setShowGo] = useState(false);
   const navigation = useNavigation();
+
+  useFocusEffect(
+    useCallback(() => {
+      Orientation.lockToPortrait();
+    }, []),
+  );
 
   useEffect(() => {
     if (count >= 0) {

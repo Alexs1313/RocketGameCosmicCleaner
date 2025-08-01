@@ -1,6 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from './src/nav/StackNavigation';
-import { ContextProvider } from './src/store.js/context';
+import { ContextProvider } from './src/store/context';
 import Loader from './src/components/Loader';
 import { useEffect, useState } from 'react';
 

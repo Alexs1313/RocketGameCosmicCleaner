@@ -13,7 +13,7 @@ import { useCallback, useState } from 'react';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 import AppBackground from '../components/AppBackground';
-import { useStore } from '../store.js/context';
+import { useStore } from '../store/context';
 
 const { height } = Dimensions.get('window');
 
@@ -59,6 +59,7 @@ const Rocket = () => {
 
     setRockets(isChangedRocketName);
     saveRockets(isChangedRocketName);
+    setInputValue('');
     if (inputValue) setIsVisibleModal(false);
   };
 
@@ -110,7 +111,7 @@ const Rocket = () => {
                     activeOpacity={0.7}
                   >
                     <Text style={styles.btnText}>
-                      {rocket.equipped ? 'Uquipped' : 'Equip'}
+                      {rocket.equipped ? 'Equipped' : 'Equip'}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -133,6 +134,7 @@ const Rocket = () => {
               placeholder="Rocket Name"
               value={inputValue}
               onChangeText={setInputValue}
+              maxLength={15}
             />
             <TouchableOpacity style={styles.saveBtn} onPress={handleChangeName}>
               <Text style={styles.buttonText}>Save</Text>

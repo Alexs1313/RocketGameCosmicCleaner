@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, useWindowDimensions } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const htmlContent = `
@@ -16,7 +16,7 @@ const htmlContent = `
         }
  .rocket {
     position: absolute;
-    top: 20%;
+    top: 30%;
     width: 80px;
     left: calc(50% - 40px);
   }
@@ -335,8 +335,6 @@ const htmlContent = `
 `;
 
 const Loader = () => {
-  const { height } = useWindowDimensions();
-
   return (
     <View style={styles.container}>
       <WebView
