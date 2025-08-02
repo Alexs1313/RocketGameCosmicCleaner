@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions } from 'react-native';
 import AppBackground from '../components/AppBackground';
 
@@ -6,12 +6,11 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { useStore } from '../store/context';
 import Orientation from 'react-native-orientation-locker';
 
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 const ROCKET_WIDTH = 70;
 const ROCKET_HEIGHT = 100;
 
 export default function Countdown({ setIsVisibleCountdown }) {
-  const [rocketX, setRocketX] = useState(width / 2 - ROCKET_WIDTH / 2);
   const { rockets } = useStore();
   const [count, setCount] = useState(3);
   const [showGo, setShowGo] = useState(false);
@@ -86,16 +85,17 @@ export default function Countdown({ setIsVisibleCountdown }) {
           />
         </View>
       </View>
-      <Image
-        source={isEquipped.image}
-        style={{
-          position: 'absolute',
-          width: ROCKET_WIDTH,
-          height: ROCKET_HEIGHT,
-          left: rocketX,
-          bottom: 20,
-        }}
-      />
+      <View style={{ alignItems: 'center' }}>
+        <Image
+          source={isEquipped.image}
+          style={{
+            position: 'absolute',
+            width: ROCKET_WIDTH,
+            height: ROCKET_HEIGHT,
+            bottom: 40,
+          }}
+        />
+      </View>
     </AppBackground>
   );
 }

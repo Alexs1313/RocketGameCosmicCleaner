@@ -1,22 +1,25 @@
 import { Share, StyleSheet, Text, View } from 'react-native';
-import MediumButton from './MediumButton';
 import { useFocusEffect } from '@react-navigation/native';
-import { useCallback, useState } from 'react';
-import { useStore } from '../store/context';
+import { useCallback, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { useStore } from '../store/context';
+import MediumButton from './MediumButton';
+
 const Card = ({ item, screen }) => {
-  const { saveTip, fetchTips, savedTips, removeTip } = useStore();
+  const { saveTip, fetchTips, removeTip } = useStore();
   const [buttonColor, setButtonColor] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
       fetchTips();
       renderSavedPlaces(item);
-    }, [buttonColor]),
+    }, []),
   );
 
-  console.log('savedTips', savedTips);
+  useEffect(() => {
+    renderSavedPlaces(item);
+  }, [buttonColor]);
 
   const handleToggleSaved = selectedTip => {
     if (buttonColor) {
@@ -57,7 +60,7 @@ const Card = ({ item, screen }) => {
       <Text style={styles.tipText}>{item}</Text>
       <View style={styles.buttonsWrap}>
         <MediumButton
-          title={'Save'}
+          title={buttonColor ? 'Saved' : 'Save'}
           style={!buttonColor && { backgroundColor: '#303D53' }}
           textStyle={!buttonColor && { color: '#fff' }}
           onPress={() => handleToggleSaved(item)}

@@ -287,7 +287,7 @@ Used time: ${formatTime(playTime)}`,
             width: ROCKET_WIDTH,
             height: ROCKET_HEIGHT,
             left: rocketX,
-            top: height - ROCKET_HEIGHT - 50,
+            top: height - ROCKET_HEIGHT - 60,
           }}
         />
         <View style={styles.slider}>

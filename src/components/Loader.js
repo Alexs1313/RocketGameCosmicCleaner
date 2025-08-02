@@ -15,10 +15,17 @@ const htmlContent = `
           overflow: hidden;
         }
  .rocket {
+    // position: absolute;
+    // // top: 28%;
+    // width: 80px;
+    // left: calc(50% - 40px);
+
+
     position: absolute;
-    top: 30%;
+    bottom: 34%;
     width: 80px;
-    left: calc(50% - 40px);
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .rocket .rocket-body {

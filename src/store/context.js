@@ -14,7 +14,6 @@ export const ContextProvider = ({ children }) => {
   const [rockets, setRockets] = useState(shop);
   const [savedBalance, setSavedBalance] = useState([]);
 
-  const total = savedScores.reduce((acc, score) => acc + score, 0);
   // notes
 
   const saveTip = async data => {
