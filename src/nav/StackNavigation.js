@@ -12,7 +12,7 @@ const Stack = createStackNavigator();
 const StackNavigation = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="Onboard" component={Onboard} /> */}
+      <Stack.Screen name="Onboard" component={Onboard} />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Tips" component={Tips} />
       <Stack.Screen name="SavedTips" component={SavedTips} />
