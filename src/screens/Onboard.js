@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   imageContainer: {
-    backgroundColor: 'rgb(16, 21, 29)',
+    backgroundColor: 'rgb(11, 14, 19)',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
