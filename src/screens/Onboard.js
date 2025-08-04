@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -33,10 +34,17 @@ const Onboard = () => {
     <>
       {showImage ? (
         <View style={styles.imageContainer}>
-          <Image
-            source={require('../assets/images/logo.png')}
-            style={{ width: '95%', height: 380 }}
-          />
+          {Platform.OS === 'ios' ? (
+            <Image
+              source={require('../assets/images/ios.png')}
+              style={{ width: '95%', height: 380 }}
+            />
+          ) : (
+            <Image
+              source={require('../assets/images/logo.png')}
+              style={{ width: '95%', height: 380 }}
+            />
+          )}
         </View>
       ) : (
         <AppBackground>
@@ -91,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   imageContainer: {
-    backgroundColor: 'rgb(11, 14, 19)',
+    backgroundColor: Platform.OS === 'ios' ? '#161B24' : 'rgb(11, 14, 19)',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

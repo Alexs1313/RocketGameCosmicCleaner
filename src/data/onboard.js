@@ -1,7 +1,15 @@
+import { Platform } from 'react-native';
+
 export const onboard = [
   {
-    image: require('../assets/images/onboard1.png'),
-    title: `Welcome to Crown Rocket Game: Cosmic Cleaner`,
+    image:
+      Platform.OS === 'ios'
+        ? require('../assets/images/onboard1IOS.png')
+        : require('../assets/images/onboard1.png'),
+    title:
+      Platform.OS === 'ios'
+        ? `Welcome to Rocket Game: Cosmic Cleaner`
+        : `Welcome to Crown Rocket Game: Cosmic Cleaner`,
     subtitle: `Join the mission to clean up space and protect our universe. Every move counts — for space and for Earth!`,
     buttonText: 'Get Started',
   },
@@ -28,7 +36,10 @@ export const onboard = [
   },
 
   {
-    image: require('../assets/images/onboard1.png'),
+    image:
+      Platform.OS === 'ios'
+        ? require('../assets/images/onboard1IOS.png')
+        : require('../assets/images/onboard1.png'),
     title: `Eco Tips & Save Them`,
     subtitle: `Discover and save helpful tips about protecting the environment — both in the game and in real life.`,
     buttonText: 'Let`s go!',
