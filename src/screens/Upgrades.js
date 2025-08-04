@@ -26,7 +26,7 @@ const Upgrades = () => {
     setRockets,
     saveRockets,
     fetchRockets,
-    saveBalance,
+    saveUpdatedBalance,
     fetchBalance,
     savedBalance,
   } = useStore();
@@ -44,6 +44,8 @@ const Upgrades = () => {
     }, [isSuccess]),
   );
 
+  console.log(savedBalance);
+
   const handleUnlockRocket = () => {
     if (total < rockets[selectedRocket].cost)
       setIsFail(true), setIsVisibleModal(false);
@@ -58,11 +60,13 @@ const Upgrades = () => {
 
       const sub = total - rockets[selectedRocket].cost;
 
-      saveBalance(sub);
+      saveUpdatedBalance(sub);
       saveRockets(isUnlockedRocket);
       setIsSuccess(true);
     }
   };
+
+  console.log(' rockets[selectedRocket].cost', total);
 
   const handleShowModal = selectedIdx => {
     setIsVisibleModal(true);

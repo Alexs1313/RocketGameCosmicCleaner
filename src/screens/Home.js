@@ -14,6 +14,7 @@ import AppBackground from '../components/AppBackground';
 import LargeButton from '../components/LargeButton';
 import { useStore } from '../store/context';
 import Countdown from '../components/Countdown';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const { height } = Dimensions.get('window');
 

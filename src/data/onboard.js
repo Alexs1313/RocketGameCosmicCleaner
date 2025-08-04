@@ -1,7 +1,7 @@
 export const onboard = [
   {
     image: require('../assets/images/onboard1.png'),
-    title: `Welcome to Rocket Game: Cosmic Cleaner`,
+    title: `Welcome to Crown Rocket Game: Cosmic Cleaner`,
     subtitle: `Join the mission to clean up space and protect our universe. Every move counts — for space and for Earth!`,
     buttonText: 'Get Started',
   },

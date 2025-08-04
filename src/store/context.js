@@ -118,6 +118,17 @@ export const ContextProvider = ({ children }) => {
     }
   };
 
+  const saveUpdatedBalance = async data => {
+    try {
+      const storedBalance = await AsyncStorage.getItem('balance');
+      let balance = storedBalance !== null ? JSON.parse(storedBalance) : [];
+
+      await AsyncStorage.setItem('balance', JSON.stringify([data]));
+    } catch (e) {
+      console.error('Failed', e);
+    }
+  };
+
   const fetchBalance = async () => {
     try {
       const savedData = await AsyncStorage.getItem('balance');
@@ -147,6 +158,7 @@ export const ContextProvider = ({ children }) => {
     saveBalance,
     fetchBalance,
     savedBalance,
+    saveUpdatedBalance,
   };
 
   return (
